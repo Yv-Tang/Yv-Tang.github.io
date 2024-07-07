@@ -1,0 +1,25 @@
+
+
+#blogBox {
+  margin: 3% 10%;
+  padding: 20px;
+
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #faebd780;
+}
+
+.blogs>* {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.headline {
+  font-size: 30px;
+}
+
+.date {
+  color: #88888888;
+  font-size: 14px;
+}
