@@ -8,8 +8,6 @@ AV.init({
 
 window.onload = mdGetDown();
 
-const blogFather = $('#blogFather');
-
 function mdGetDown() {
     const query = new AV.Query("MarkDownPosts");
     query.find()
@@ -18,7 +16,8 @@ function mdGetDown() {
             results.forEach(function (post) {
                 var title = post.get('title');
                 var date = post.get('createdAt');
-                $('.blogs').innerHTML = blogTitleSpawner(title, date)+$('.blogs').innerHTML;
+                var id = post.get('objectId');
+                $('.blogs').innerHTML = blogTitleSpawner(title, date, id)+$('.blogs').innerHTML;
             });
         })
         .catch(error => {
@@ -27,20 +26,51 @@ function mdGetDown() {
 }
 
 
-function blogTitleSpawner(title, date) {
+function blogTitleSpawner(title, date, id) {
     return `
-    <div id="leanMdBlog">
+    <div id="leanMdBlog" onclick="blogReader('${id}')">
     <span class="headline">${title}</span>
     <span class="date">- ${date} </span>
     </div>`;
 }
+
+function blogReader(id) {
+    // 通过id获取MarkDownPosts对象，获取markdown内容，渲染到页面上
+    const query = new AV.Query("MarkDownPosts");
+    query.get(id)
+        .then(post => {
+            var title = post.get('title');
+            var date = post.get('createdAt');
+            var content = post.get('content');
+            console.log(`获取到${id}的内容`);
+            $('#blogBox').style.display = 'none';
+            $('#contentBox').style.display = 'block';
+            $('#contentBox').innerHTML = `
+                <div id="mdBlog">
+                    <span class="headline">${title}</span>
+                    <span class="date">- ${date} </span>
+                 <span class="reload" onclick="location.reload(true);" style="margin-left: auto;">←</span>
+               
+                </div>
+                <br>
+                <div id="content">${marked(content)}</div>`;
+            console.log('完成渲染');
+
+        })
+
+}
+
+
 
 /**
  * @param {String} eleName 
  * 返回一个指定的HTML元素
 */
 function $(eleName) {
-    var element = document.querySelector(eleName)
+    var element = document.querySelector(eleName);
+    if (!element) {
+        console.error(`Element with selector ${eleName} not found`);
+    }
     return element;
 }
     // function mdFirstGetDown() {

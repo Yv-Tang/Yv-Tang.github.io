@@ -12,8 +12,7 @@
     <script src="https://cdn.bootcss.com/marked/0.8.1/marked.min.js"></script>
     <!-- Leancloud库 -->
     <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script>
-    
-    <script src="../js/Post.js"></script>
+
 
 
 </head>
@@ -35,10 +34,13 @@
         </div>
     </div>
     <div id="form">
-        <span>Title:</span><input placeholder="Title" required="required" autofocus="autofocus" type="text" name="title" id="title">
-        <span>Content:</span><textarea placeholder="Content" required="required" mode="markdown" type="text" name="content" id="content"></textarea>
+        <span>Title:</span><input placeholder="Title" required="required" autofocus="autofocus" type="text" name="title"
+            id="title">
+        <span>Content:</span><textarea placeholder="Content" required="required" mode="markdown" type="text"
+            name="content" id="content"></textarea>
         <button onclick="mdGetOn(title,content)" id="submit">Submit</button>
     </div>
+    <script src="../js/Post.js"></script>
 </body>
 
 </html>
