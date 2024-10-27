@@ -7,6 +7,13 @@ AV.init({
 });
 
 window.onload = mdGetDown();
+var headCtrler = {
+    Github: function () {window.open('https://github.com/Yv-Tang')},                    // 跳转到Github主页
+    Home: function () {window.open('https://yv-tang.github.io')},                       // 跳转到主页
+    About: function () {window.open('https://yv-tang.github.io/pages/About.html')},     // 关于页
+    Reward: function () {window.open('https://yv-tang.github.io/pages/Reward.html')},   // 赞赏页
+    Post: function () {window.open('https://yv-tang.github.io/pages/Post.html')},       // 写作页
+}
 
 function mdGetDown() {
     const query = new AV.Query("MarkDownPosts");
@@ -25,10 +32,9 @@ function mdGetDown() {
         });
 }
 
-
 function blogTitleSpawner(title, date, id) {
     return `
-    <div id="leanMdBlog" onclick="blogReader('${id}')">
+    <div id="leanMdBlog" onclick="window.open(\`https://Yv-Tang.github.io/pages/Reader.html?blogTitle=${encodeURIComponent(title)}&objID=${encodeURIComponent(id)}\`)">
     <span class="headline">${title}</span>
     <span class="date">- ${date} </span>
     </div>`;

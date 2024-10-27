@@ -1,0 +1,105 @@
+@import url('https://fonts.font.im/css?family=Itim');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Itim", sans-serif;
+  font-display: swap;
+}
+
+
+/* 代码格式 */
+code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+
+  background-color: rgb(245, 245, 245);
+  border: 1px solid #cccccc50;
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+
+/* 导航栏 */
+#header {
+  background: linear-gradient(to left, #0080ff, #bdffc7);
+  color: rgba(0, 0, 0, 0.5);
+
+  padding: 15px 0px;
+  align-items: center;
+  display: flex;
+  border-bottom: 1px solid #ccc;
+
+  box-shadow: 0px 2px 5px #ccc;
+}
+
+#header svg {
+  margin: 0px 15px;
+}
+
+#nav {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: 15px;
+}
+
+/* 导航栏按钮 */
+#nav span {
+  margin: 0px 5px;
+  padding: 1px 5px;
+
+  background: linear-gradient(to left, #bdffc7, #ffffff50);
+
+  border-radius: 5px;
+
+  font-weight: normal;
+}
+
+#nav span:hover {
+  cursor: pointer;
+  user-select: none;
+
+  box-shadow: 0px 0px 5px #fff;
+}
+
+#nav span:active {
+  background-color: #bbb;
+  border-color: #ccc;
+}
+
+/* 页脚 */
+footer {
+  background-color: #222222;
+  color: #fff;
+  margin-top: 50px;
+  padding-top: 10px;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+footer .urls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+footer .urls * {
+  padding: 2px 5px;
+  text-align: left;
+  color: #bbbbbbbb;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+footer .urls a:hover {
+  color: #bbbbbbff;
+}
+
+footer .copyright {
+  padding: 5px 0px;
+  background: #111111;
+  color: #bbb;
+}
