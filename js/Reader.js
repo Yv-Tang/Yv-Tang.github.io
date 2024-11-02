@@ -32,7 +32,7 @@ addEventListener('load', function () {
             // 显示文章标题
             $('#title').innerHTML = post.get('title');
             // 显示文章作者
-            $('#author').innerHTML = post.get('author');
+            $('#author').innerHTML = post.get('qq');
             // 显示文章内容
             $('#content').innerHTML = marked(post.get('content'));
             // 显示文章发布时间
