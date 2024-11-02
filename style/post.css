@@ -12,7 +12,8 @@
 }
 
 #form #title,
-#form #content {
+#form #content,
+#form #qq {
     margin-bottom: 20px;
     padding: 10px;
     

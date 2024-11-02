@@ -1,5 +1,5 @@
 window.onload = function () {
-    
+
     // 添加markdown渲染器和leancloud存储库
     // var script1 = document.createElement('script');
     // script1.src = 'https://cdn.bootcss.com/marked/0.8.1/marked.min.js';
@@ -63,4 +63,209 @@ var headCtrler = {
     About: function () { window.open('/pages/About.html') },     // 关于页
     Reward: function () { window.open('/pages/Reward.html') },   // 赞赏页
     Post: function () { window.open('/pages/Post.html') },       // 写作页
+}
+
+function showMsg(msg) {
+    var div = document.createElement('div');
+    div.style.position = 'fixed';
+    div.style.top = '50%';  // 居中显示
+    div.style.left = '50%'; // 居中显示
+    div.style.transform = 'translate(-50%, -50%)'; // 用于居中
+    div.style.width = '80%'; // 较小宽度，便于美观
+    div.style.maxWidth = '400px'; // 最大宽度
+    div.style.height = 'auto'; // 自适应高度
+    div.style.backgroundColor = 'rgba(0, 0, 0, 0.8)'; // 更深的背景色
+    div.style.color = '#fff';
+    div.style.fontSize = '1.5rem';
+    div.style.padding = '20px'; // 加大内边距
+    div.style.borderRadius = '10px'; // 圆角
+    div.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)'; // 阴影效果
+    div.style.display = 'flex';
+    div.style.alignItems = 'center';
+    div.style.justifyContent = 'center';
+    div.style.zIndex = '9999';
+    div.style.transition = 'opacity 0.5s ease'; // 过渡效果
+    div.style.opacity = '1'; // 初始透明度
+
+    div.innerHTML = msg;
+    document.body.appendChild(div);
+
+    // 设置定时器，2秒后开始淡出
+    setTimeout(function () {
+        div.style.opacity = '0'; // 设置透明度为0
+        setTimeout(function () {
+            // 增加验证div是否存在
+            if (!div) { document.body.removeChild(div); }
+        }, 500); // 等待过渡效果
+    }, 2000);
+
+    // 点击事件处理
+    addEventListener('click', function (e) {
+        document.body.removeChild(div);
+        e.stopPropagation();
+    });
+}
+
+function showMsg(msg, imgUrl) {
+    var div = document.createElement('div');
+    div.style.position = 'fixed';
+    div.style.top = '50%';
+    div.style.left = '50%';
+    div.style.transform = 'translate(-50%, -50%)';
+    div.style.width = '80%';
+    div.style.maxWidth = '400px';
+    div.style.height = 'auto';
+    div.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    div.style.color = '#fff';
+    div.style.fontSize = '1.5rem';
+    div.style.padding = '20px';
+    div.style.borderRadius = '10px';
+    div.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
+    div.style.display = 'flex';
+    div.style.flexDirection = 'column'; // 垂直排列子元素
+    div.style.alignItems = 'center';
+    div.style.justifyContent = 'center';
+    div.style.zIndex = '9999';
+    div.style.transition = 'opacity 0.5s ease';
+    div.style.opacity = '1';
+
+    div.innerHTML = msg; // 显示消息
+
+    // 如果传入了图片 URL，则创建图片元素并添加到 div
+    if (imgUrl) {
+        var img = document.createElement('img');
+        img.src = imgUrl; // 设置图片源
+        img.style.maxWidth = '100%'; // 图片宽度自适应
+        img.style.borderRadius = '10px'; // 圆角
+        img.style.marginTop = '10px'; // 图片与文字之间的间距
+        div.appendChild(img); // 将图片添加到 div 中
+    }
+
+    document.body.appendChild(div);
+
+    // 设置定时器，2秒后开始淡出
+    setTimeout(function () {
+        div.style.opacity = '0';
+        setTimeout(function () {
+            if (!div) { document.body.removeChild(div); }
+        }, 500);
+    }, 2000);
+
+    // 点击事件处理
+    div.addEventListener('click', function (e) {
+        document.body.removeChild(div);
+        e.stopPropagation();
+    });
+}
+function qsMsg(msg, type) {
+    return new Promise((resolve) => {
+        var div = document.createElement('div');
+        div.style = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 400px;
+            height: auto;
+            background-color: rgba(30, 30, 30, 0.9); /* 深灰背景 */
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        `;
+
+        var message = document.createElement('div');
+        message.innerHTML = msg;
+        message.style.marginBottom = '20px'; // 消息与按钮之间的间距
+        div.appendChild(message);
+
+        // 创建公共按钮样式
+        var buttonStyle = `
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px; // 设置内边距
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 20%; // 设置按钮宽度为父元素的 20%
+            margin: 0 5px; // 添加左右边距
+        `;
+
+        // 创建不同类型的输入或选项
+        if (type === 'input') {
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = '请输入内容';
+            input.style.marginTop = '10px';
+            input.style.padding = '12px';
+            input.style.border = 'none';
+            input.style.borderRadius = '5px';
+            input.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
+            input.style.width = '80%'; // 输入框宽度为父元素的 80%
+            input.style.fontSize = '1rem'; // 字体大小
+            div.appendChild(input);
+
+            var confirmBtn = document.createElement('button');
+            confirmBtn.innerHTML = '确定';
+            confirmBtn.style = `${buttonStyle}`;
+            confirmBtn.style.backgroundColor = '#007BFF'; // 确定按钮颜色
+            confirmBtn.onclick = function () {
+                var inputValue = input.value;
+                console.log('输入的内容是：' + inputValue);
+                document.body.removeChild(div);
+                resolve(inputValue);
+            };
+
+            div.appendChild(confirmBtn);
+        } else if (type === 'if') {
+            // 创建按钮容器
+            var buttonContainer = document.createElement('div');
+            buttonContainer.style.display = 'flex';
+            buttonContainer.style.justifyContent = 'space-between'; // 平均分配
+            buttonContainer.style.width = '100%'; 
+            buttonContainer.style.marginTop = '20px'; // 按钮与信息之间的间距
+
+            var yesBtn = document.createElement('button');
+            yesBtn.innerHTML = 'Yes';
+            yesBtn.style = `${buttonStyle}`;
+            yesBtn.style.backgroundColor = '#4CAF50'; // 绿色背景
+            yesBtn.onclick = function () {
+                console.log('用户选择了：Yes');
+                document.body.removeChild(div);
+                resolve('Yes');
+            };
+
+            var noBtn = document.createElement('button');
+            noBtn.innerHTML = 'No';
+            noBtn.style = `${buttonStyle}`;
+            noBtn.style.backgroundColor = '#f44336'; // 红色背景
+            noBtn.onclick = function () {
+                console.log('用户选择了：No');
+                document.body.removeChild(div);
+                resolve('No');
+            };
+
+            buttonContainer.appendChild(yesBtn);
+            buttonContainer.appendChild(noBtn);
+            div.appendChild(buttonContainer); // 将按钮容器添加到 div 中
+        }
+
+        document.body.appendChild(div);
+    });
+}
+
+
+
+
+
+
+function $(selector) {
+    return document.querySelector(selector);
 }

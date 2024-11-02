@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#content-box {
+    margin: 3% 10%;
+    padding: 20px;
+  
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #faebd799;
+}
+
+#title-box {
+    border-bottom: 1px solid #ccc;
+    font-size: 30px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#title-box #author {
+    font-size: 20px;
+    margin-top: 20px;
+    float: right;
+}
+
+#content {
+    font-size: 18px;
+}
+
+#date {
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: right;
+    color: #00000080;
+}

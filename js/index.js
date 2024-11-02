@@ -34,9 +34,9 @@ function mdGetDown() {
 
 function blogTitleSpawner(title, date, id) {
     return `
-    <div id="leanMdBlog" onclick="window.open(\`https://Yv-Tang.github.io/pages/Reader.html?blogTitle=${encodeURIComponent(title)}&objID=${encodeURIComponent(id)}\`)">
-    <span class="headline">${title}</span>
-    <span class="date">- ${date} </span>
+    <div id="leanMdBlog" onclick="window.open(\`/pages/Reader.html?blogTitle=${encodeURIComponent(title)}&objID=${encodeURIComponent(id)}\`)">
+    <span class="headline">${title}</span><br>
+    <span class="date" style="margin-left: 20px;">- ${date} </span>
     </div>`;
 }
 
